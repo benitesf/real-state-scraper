@@ -36,3 +36,6 @@ venv.bak/
 # Spyder project settings
 .spyderproject
 .spyproject
+
+# Data
+*.data
