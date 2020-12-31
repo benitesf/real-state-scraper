@@ -39,3 +39,6 @@ venv.bak/
 
 # Data
 *.data
+
+# Swp files
+*.swp
