@@ -49,16 +49,24 @@ def is_last_page(page):
 	Check if the current page contains lastPage: true
 	"""
 	links = page.find_all("script")
-	p = re.compile(r"'lastPage': (.*?),")
+	last_page_patt = re.compile(r"'lastPage': (.*?),")
+	no_res_patt = re.compile(r"const\s+noResults\s+=\s+(.*?);")
 
-	for s in links:
+	"""for s in links:
 		data = s.string
 		if type(data) is type(None):
 			continue
 		m = re.search(p, data)
 		if m:
 			if m.group(1) == 'true':
-				return True
+				return True"""
+
+	lp = search_pattern(last_page_patt, links)
+	nr = search_pattern(no_res_patt, links)
+
+	if lp.strip() == 'true' or nr.strip() == 'true':
+		return True
+
 	return False
 
 def search_pattern(pattern, resultSet):
