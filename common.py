@@ -32,7 +32,7 @@ def get_next_page(src_url):
 	Finds the next page postings if exists
 	"""
 	base = src_url
-	n = 995
+	n = 1
 	last = False
 
 	while True:

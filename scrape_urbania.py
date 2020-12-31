@@ -7,17 +7,17 @@ Created on Mon Dec 28 18:49:26 2020
 """
 
 
+import os
 import datetime
-import re
 import json
 import logging
 import _pickle as pkl
 
 import common
 import sale
-from variables import *
+import macros
 
-logging.basicConfig(level=logging.DEBUG)
+logging.basicConfig(level=logging.INFO)
 
 def scrape_sell(base_url, action, mode, locs, fp):
     logging.info("Scraping sale mode")
@@ -27,9 +27,9 @@ def scrape_sell(base_url, action, mode, locs, fp):
     for k in locs:
         logging.info(f'location: {locs[k]}')
         url = base_url + "/" + action + "/" + mode + locs[k]        
-        #pages = [p for p in common.get_n_pages(url, 2)]        
+        #pages = [p for p in common.get_n_pages(url, 2)]
         
-        for page in common.get_n_pages(url, 2):
+        for page in common.get_next_page(url):
             posts = sale.get_postings(page)
             if posts is None:
                 logging.warning("Posts is None, avoiding")
@@ -122,17 +122,17 @@ def extract_sale_info(post_page):
         }
     return row
            
-location_ = {
-    "CAL": "callao",
-    "CUS": "cusco",
-    "ICA": "ica",
-    "LIM": "lima",
-    
-}
 
-# Scraper sale mode and save as pickle
-date = datetime.datetime.now().strftime("%d-%m-%Y")
-filename = f"sale_{date}.data"
-with open(filename, 'ab+') as fp:
-    scrape_sell(base_url, action["find"], mode["sale"], location_, fp)
+if __name__ == "__main__":
+    outdir = "data"
+    if not os.path.exists(outdir):
+        os.makedirs(outdir)
+    
+    # Scraper sale mode and save as pickle
+    date = datetime.datetime.now().strftime("%d-%m-%Y")
+    filename = os.path.join(outdir, f"sale_{date}.data")
+    
+    with open(filename, 'ab+') as fp:
+        scrape_sell(macros.BASE_URL, macros.ACTION["find"], 
+                    macros.MODE["sale"], macros.LOCATION, fp)
     

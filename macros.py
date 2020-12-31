@@ -1,6 +1,6 @@
-base_url = "https://urbania.pe"
-action = {"find": "buscar"}
-mode = {"sale":    "venta-de-propiedades-en-",
+BASE_URL = "https://urbania.pe"
+ACTION = {"find": "buscar"}
+MODE = {"sale":    "venta-de-propiedades-en-",
         "rental": "alquiler-de-propiedades-en-",
         "temporal": "alquiler-temporal-de-propiedades-en-",
         "project": {
@@ -9,7 +9,7 @@ mode = {"sale":    "venta-de-propiedades-en-",
             "pre-sale-building": "proyectos-departamentos?devStage=60",
             "pre-sale-premiere": "proyectos-departamentos?devStage=61"
          }}
-location = {
+LOCATION = {
     "AMA": "amazonas",
     "ANC": "ancash",
     "APU": "apurimac",
@@ -40,7 +40,7 @@ location = {
 """
 Property features
 """
-property_feats = {
+PROPERTY_FEATS = {
 	"icon-antiguedad": "antiquity",
 	"icon-bano": "bathroom",
 	"icon-cochera": "garage",
