@@ -28,9 +28,8 @@ The table mode is a generalization from different tables:
 
 There is a relation 1 to * between Pronvince and Mode tables.
 
-Sale(id_urbania, id_publisher, date, title, price_id, location_id, prop_feat_id, gen_feat_id, description)
+Sale(id_urbania, id_publisher, date, title, price_id, operation, property, location_id, prop_feat_id, gen_feat_id, description)
 Price()
-Operation()
 Location(cod, name)
 PropertyFeatures()
 GeneralFeatures()
